@@ -9,6 +9,7 @@ public class UI_StaminaSlider : UI_Slider
     private void Start()
     {
         slider.value = 0;
+
         GameManager.Instance.Unit.EventHandler.OnStaminaChanged += UpdateStaminaBar;
     }
 

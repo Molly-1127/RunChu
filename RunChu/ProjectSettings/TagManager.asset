@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
+  - Unit
   - Enemy
   - Ground
   - Obstacle

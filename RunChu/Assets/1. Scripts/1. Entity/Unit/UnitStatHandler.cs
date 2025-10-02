@@ -69,10 +69,11 @@ public class UnitStatHandler : MonoBehaviour
 
         currentStat.HP = Math.Max(0, currentStat.HP - damage);
         unit.EventHandler.CallHpChangeEvent(damage);
+        Debug.Log($"Take {damage} Damage");
 
         if (currentStat.HP <= 0)
         {
-            Debug.Log("Unit Die");
+            Debug.Log("Die");
             isDie = true;
             unit.EventHandler.CallDieEvent();
         }

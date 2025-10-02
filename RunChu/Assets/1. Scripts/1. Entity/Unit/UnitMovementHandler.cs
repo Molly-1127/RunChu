@@ -11,7 +11,7 @@ public class UnitMovementHandler : MonoBehaviour
     [SerializeField] private int jumpCount;
 
     [Header("OnGround")]
-    [SerializeField] private LayerMask GroundMask;
+    [SerializeField] private LayerMask groundMask;
 
     [Header("Slide")]
     [SerializeField] private Vector2 originOffset;
@@ -37,6 +37,8 @@ public class UnitMovementHandler : MonoBehaviour
 
     public void Init(Unit unit)
     {
+        if (unit == null) return;
+
         this.unit = unit;
         unit.EventHandler.OnJump += CheckJumpCount;
         unit.EventHandler.OnSlide += CheckSlide;
@@ -114,7 +116,7 @@ public class UnitMovementHandler : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((GroundMask.value & (1 << collision.transform.gameObject.layer)) > 0)
+        if (ExtensionMethods.IsSameLayer(groundMask,collision.transform.gameObject.layer))
         {
             Debug.Log("Ground 충돌");
             unit.EventHandler.CallOnGroundEvent(true);

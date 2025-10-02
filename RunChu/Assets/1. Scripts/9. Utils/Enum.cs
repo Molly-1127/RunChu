@@ -1,5 +1,14 @@
 public enum EPoolObjectType
 {
-    Obstacle_SingleJump_1,
-    Obstacle_DoubleJump_2,
+    Obstacle_3001,
+    Obstacle_3101,
 }
+
+public enum EObstacleType
+{
+    EJumpSingle,
+    EJumpDouble,
+    EPlatformer,
+    EDropHarzard,
+}
+
