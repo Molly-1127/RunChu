@@ -11,12 +11,12 @@ public class UI_Btn_Jump : UI_Btn
         btn.onClick.AddListener(OnClickJumpBtn);
 
         jumpCount = 0;
-        GameManager.Instance.Player.EventHandler.OnGround += CheckOnGround;
+        GameManager.Instance.Unit.EventHandler.OnGround += CheckOnGround;
     }
 
     private void OnClickJumpBtn()
     {
-        GameManager.Instance.Player.EventHandler.CallJumpEvent();
+        GameManager.Instance.Unit.EventHandler.CallJumpEvent();
 
         jumpCount ++;
 

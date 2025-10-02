@@ -9,7 +9,7 @@ public class UI_StaminaSlider : UI_Slider
     private void Start()
     {
         slider.value = 0;
-        GameManager.Instance.Player.EventHandler.OnStaminaChanged += UpdateStaminaBar;
+        GameManager.Instance.Unit.EventHandler.OnStaminaChanged += UpdateStaminaBar;
     }
 
     private void UpdateStaminaBar(int staminaValue)
@@ -19,7 +19,7 @@ public class UI_StaminaSlider : UI_Slider
         DOTween.To(
             () => slider.value, // 현재 값
             x => slider.value = x,
-            GameManager.Instance.Player.StatHandler.GetStaminaPercentage(), // 목표 값 = 1-현재 스태미나 퍼센테이지
+            GameManager.Instance.Unit.StatHandler.GetStaminaPercentage(), // 목표 값 = 현재 스태미나 퍼센테이지
             slidingTime)
             .SetEase(Ease.OutQuad); // duration
     }

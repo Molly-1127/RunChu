@@ -9,7 +9,7 @@ public class UI_HpSlider : UI_Slider
     private void Start()
     {
         slider.value = 1;
-        GameManager.Instance.Player.EventHandler.OnHpChanged += UpdateHpBar;
+        GameManager.Instance.Unit.EventHandler.OnHpChanged += UpdateHpBar;
     }
 
     private void UpdateHpBar(int hpValue)
@@ -19,7 +19,7 @@ public class UI_HpSlider : UI_Slider
         DOTween.To(
             () => slider.value, // 현재 값
             x => slider.value = x,
-            GameManager.Instance.Player.StatHandler.GetHpPercentage(), // 목표 값 = 현재 체력 비율
+            GameManager.Instance.Unit.StatHandler.GetHpPercentage(), // 목표 값 = 현재 체력 비율
             slidingTime)
             .SetEase(Ease.OutQuad); // duration
     }

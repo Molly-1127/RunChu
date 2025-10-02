@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    [field:SerializeField] public Player Player { get; private set; }
+    [field:SerializeField] public Unit Unit { get; private set; }
 
-    public void SetPlayer(Player player)
+    public void SetUnit(Unit unit)
     {
-        Player = player;
+        Unit = unit;
     }
 }

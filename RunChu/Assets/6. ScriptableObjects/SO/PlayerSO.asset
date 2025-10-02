@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e725c634f3349408f291d1a091d7ff, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  Speed: 13
-  JumpForce: 15
-  HP: 100
+  ID: 1001
+  Name: "\uC790\uC11D\uCE04"
+  HP: 200
   Stamina: 1000
+  Speed: 13
+  SpeedMultiplier: 1.7
+  JumpForce: 15
