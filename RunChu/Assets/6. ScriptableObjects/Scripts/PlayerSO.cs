@@ -8,7 +8,5 @@ public class PlayerSO : ScriptableObject
     [Range(5f, 20f)] public float JumpForce;
 
     [Header("Player Stat")]
-    public float Health;
-    public float Defense;
-    public float Evasion;
+    public int HP;
 }

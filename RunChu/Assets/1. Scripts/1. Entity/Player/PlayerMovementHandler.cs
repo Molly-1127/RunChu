@@ -53,7 +53,7 @@ public class PlayerMovementHandler : MonoBehaviour
     private void Run()
     {
         velocity = player.Rigidbody.velocity;
-        velocity.x = player.StatHandler.GetSpeed();
+        velocity.x = player.StatHandler.GetCurrentSpeed();
         player.Rigidbody.velocity = velocity;
     }
 

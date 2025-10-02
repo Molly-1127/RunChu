@@ -75,9 +75,9 @@ public class ImageScrollHandler : MonoBehaviour
         for (int i = 0; i < images.Length; i++)
         {
             // 플레이어가 특정 상태이상에 걸려 속도가 달라졌을 때, 스크롤 속도도 느려져야함
-            if (GameManager.Instance.Player.StatHandler.GetSpeed() != scrollSpeed)
+            if (GameManager.Instance.Player.StatHandler.GetCurrentSpeed() != scrollSpeed)
             {
-                timeDelta = new Vector3(-GameManager.Instance.Player.StatHandler.GetSpeed(), 0, 0);
+                timeDelta = new Vector3(-GameManager.Instance.Player.StatHandler.GetCurrentSpeed(), 0, 0);
             }
             images[i].position += timeDelta * Time.deltaTime; // 이미지를 지정된 속도만큼 x축 이동
 
