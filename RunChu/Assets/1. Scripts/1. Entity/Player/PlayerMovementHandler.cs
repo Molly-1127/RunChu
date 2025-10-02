@@ -30,7 +30,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canRun) Run();
+        // if (canRun) Run(); 
         if (canJump) Jump();
 
         AddGravity();
