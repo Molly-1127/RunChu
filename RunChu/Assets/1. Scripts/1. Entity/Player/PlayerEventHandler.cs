@@ -6,8 +6,8 @@ public class PlayerEventHandler : MonoBehaviour
     public event Action OnJump;
     public event Action<bool> OnSlide;
     public event Action<bool> OnGround;
-    public event Action<float> OnHpChanged; // HpBar
-    public event Action<float> OnStaminaChanged;
+    public event Action<int> OnHpChanged; // HpBar
+    public event Action<int> OnStaminaChanged;
     public event Action OnDie;
 
     public void CallJumpEvent()
@@ -25,9 +25,9 @@ public class PlayerEventHandler : MonoBehaviour
         OnGround?.Invoke(onGround);
     }
 
-    public void CallHpChangeEvent(int damageValue)
+    public void CallHpChangeEvent(int hpValue)
     {
-        OnHpChanged?.Invoke(damageValue);
+        OnHpChanged?.Invoke(hpValue);
     }
 
     public void CallStaminaChangeEvent(int staminaValue)

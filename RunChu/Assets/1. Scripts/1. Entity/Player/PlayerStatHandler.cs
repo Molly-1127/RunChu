@@ -8,14 +8,16 @@ using System;
 public class PlayerStat
 {
     public int HP;
-    public int Stamina;
     public float Speed;
+    public int TotalStamina;
+    public int CurrentStamina;
 
     public void Init(PlayerSO playerSO)
     {
         HP = playerSO.HP;
         Speed = playerSO.Speed;
-        Stamina = 0;
+        TotalStamina = playerSO.Stamina;
+        CurrentStamina = 0;
     }
 }
 
@@ -44,14 +46,21 @@ public class PlayerStatHandler : MonoBehaviour
     public float GetJumpForce() => player.Data.JumpForce;
     public int GetMaxHp() => baseStat.HP;
     public int GetCurrentHp() => currentStat.HP;
-    public int GetMaxStamina() => baseStat.Stamina;
-    public int GetCurrentStamina() => currentStat.Stamina;
+    public int GetMaxStamina() => currentStat.TotalStamina;
+    public int GetCurrentStamina() => currentStat.CurrentStamina;
     public bool IsDie() => isDie;
 
-    [ContextMenu("TakeDamage10")]
-    public void TakeDamage10()
+    [ContextMenu("TakeRandomDamage")]
+    public void TakeDamageRandom()
     {
-        TakeDamage(10);
+        System.Random rand = new System.Random();
+        TakeDamage(rand.Next(10, 50));
+    }
+    [ContextMenu("IncreaseRandomStamina")]
+    public void IncreaseStaminaRandom()
+    {
+        System.Random rand = new System.Random();
+        IncreaseStamina(rand.Next(50, 200));
     }
 
     public void TakeDamage(int damage)
@@ -69,6 +78,12 @@ public class PlayerStatHandler : MonoBehaviour
         }
     }
 
+    public void IncreaseStamina(int staminaValue)
+    {
+        currentStat.CurrentStamina = Math.Min(currentStat.TotalStamina, currentStat.CurrentStamina + staminaValue);
+        player.EventHandler.CallStaminaChangeEvent(staminaValue);
+    }
+
     public float GetHpPercentage()
     {
         return (float)currentStat.HP / baseStat.HP;
@@ -76,6 +91,6 @@ public class PlayerStatHandler : MonoBehaviour
 
     public float GetStaminaPercentage()
     {
-        return currentStat.Stamina / baseStat.Stamina;
+        return (float)currentStat.CurrentStamina / currentStat.TotalStamina;
     }
 }

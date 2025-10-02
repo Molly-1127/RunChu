@@ -1,25 +1,25 @@
-
 using DG.Tweening;
 using UnityEngine;
 
-public class UI_HpBar : UI_Slider
+public class UI_HpSlider : UI_Slider
 {
     [Header("HP Bar Component")]
-    [SerializeField] [Range(.1f,3f)] private float slidingTime;
+    [SerializeField] [Range(.1f,3f)] private float slidingTime = 1.7f;
  
     private void Start()
     {
+        slider.value = 1;
         GameManager.Instance.Player.EventHandler.OnHpChanged += UpdateHpBar;
     }
 
-    private void UpdateHpBar(float hpValue)
+    private void UpdateHpBar(int hpValue)
     {
         slider.DOKill(true); // 진행중인 트윈 중지
 
         DOTween.To(
             () => slider.value, // 현재 값
             x => slider.value = x,
-            GameManager.Instance.Player.StatHandler.GetHpPercentage(), // 목표 값
+            GameManager.Instance.Player.StatHandler.GetHpPercentage(), // 목표 값 = 현재 체력 비율
             slidingTime)
             .SetEase(Ease.OutQuad); // duration
     }
