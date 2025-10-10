@@ -30,7 +30,7 @@ public class UnitMovementHandler : MonoBehaviour
     private void FixedUpdate()
     {
         // if (canRun) Run(); 
-        if (canJump) Jump();
+        if (canJump && !unit.StatHandler.IsDie()) Jump();
 
         AddGravity();
     }

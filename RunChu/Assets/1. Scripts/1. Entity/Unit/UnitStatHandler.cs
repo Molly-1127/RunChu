@@ -18,14 +18,14 @@ public class UnitStatHandler : MonoBehaviour
         baseStat = new UnitStat();
         currentStat = new UnitStat();
 
-        baseStat.Init(unit.Data);
-        currentStat.Init(unit.Data);
+        baseStat.Init(unit.UnitData);
+        currentStat.Init(unit.UnitData);
 
         isDie = false;
     }
 
     public float GetCurrentSpeed() => currentStat.Speed;
-    public float GetJumpForce() => unit.Data.JumpForce;
+    public float GetJumpForce() => unit.UnitData.JumpForce;
     public bool IsDie() => isDie;
 
     public void IncreaseStamina(int staminaValue)
@@ -57,8 +57,7 @@ public class UnitStatHandler : MonoBehaviour
         if (currentStat.HP <= 0)
         {
             Debug.Log("Die");
-            isDie = true;
-            unit.EventHandler.CallDieEvent();
+            Die();
         }
     }
 
@@ -74,10 +73,9 @@ public class UnitStatHandler : MonoBehaviour
     private IEnumerator SlowCoroutine()
     {
         float startTime = Time.time;
-        float endTime = startTime + unit.Data.SlowDuration;
-        Debug.Log($"startTime : {startTime} / endTime : {endTime}");
+        float endTime = startTime + unit.UnitData.SlowDuration;
 
-        currentStat.Speed = baseStat.Speed * unit.Data.SpeedReducer;
+        currentStat.Speed = baseStat.Speed * unit.UnitData.SpeedReducer;
 
         while (Time.time < endTime)
         {
@@ -93,12 +91,18 @@ public class UnitStatHandler : MonoBehaviour
 
     public void Boost()
     {
-        currentStat.Speed = unit.Data.BoostSpeed;
+        currentStat.Speed = unit.UnitData.BoostSpeed;
     }
 
     public void Stop()
     {
         currentStat.Speed = 0f;
+    }
+
+    public void Die()
+    {
+        isDie = true;
+        unit.EventHandler.CallDieEvent();
     }
 
     #endregion

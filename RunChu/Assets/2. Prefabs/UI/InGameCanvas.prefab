@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: STAGE 1
+  m_text: STAGE 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fae8bc46bf162c40ad0cc0980240b77, type: 2}
   m_sharedMaterial: {fileID: -4223113449273991242, guid: 2fae8bc46bf162c40ad0cc0980240b77, type: 2}
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000 M
+  m_text: 000 M
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fae8bc46bf162c40ad0cc0980240b77, type: 2}
   m_sharedMaterial: {fileID: -4223113449273991242, guid: 2fae8bc46bf162c40ad0cc0980240b77, type: 2}
@@ -1040,6 +1040,7 @@ GameObject:
   - component: {fileID: 3192298485704503038}
   - component: {fileID: 5148137161690227003}
   - component: {fileID: 4546187766884441197}
+  - component: {fileID: 6922567378104760095}
   m_Layer: 5
   m_Name: InGameCanvas
   m_TagString: Untagged
@@ -1131,6 +1132,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6922567378104760095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272992105455316646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760561775886bd9469bc108c70abdc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageText: {fileID: 1506019635673514783}
+  distanceText: {fileID: 6732457584983670066}
+  unitProgressImage: {fileID: 1033749268574231748}
+  enemyProgressImage: {fileID: 5747563486734844996}
+  totalBarImage: {fileID: 7814927366171108612}
 --- !u!1 &3552041941644856659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1625,7 @@ GameObject:
   - component: {fileID: 93059998914985402}
   - component: {fileID: 357934235801295119}
   m_Layer: 5
-  m_Name: Image_Player
+  m_Name: Image_Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2203,11 +2221,11 @@ RectTransform:
   - {fileID: 8986029703512855953}
   m_Father: {fileID: 2011998987178196700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -414, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6222994208502981480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2816,7 +2834,7 @@ GameObject:
   - component: {fileID: 7883782199968301392}
   - component: {fileID: 1033749268574231748}
   m_Layer: 5
-  m_Name: UI_PlayerProgress
+  m_Name: UI_UnitProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2837,11 +2855,11 @@ RectTransform:
   - {fileID: 4245092371882752864}
   m_Father: {fileID: 2011998987178196700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -184, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 111, y: 0}
   m_SizeDelta: {x: 10, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7883782199968301392
 CanvasRenderer:
   m_ObjectHideFlags: 0

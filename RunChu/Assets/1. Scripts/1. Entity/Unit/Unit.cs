@@ -5,13 +5,13 @@ public class Unit : Entity
     public UnitEventHandler EventHandler { get; private set; }
     public UnitMovementHandler MovementHandler { get; private set; }
     public UnitStatHandler StatHandler { get; private set; }
-    public UnitEffectHandler EffectHandler{ get; private set; }
+    public UnitEffectHandler EffectHandler { get; private set; }
 
     public UnitStateMachine StateMachine { get; private set; }
 
 
     [field: Header("Unit Data")]
-    [field: SerializeField] public UnitSO Data { get; private set; }
+    [field: SerializeField] public UnitSO UnitData { get; private set; }
 
     protected override void Awake()
     {
@@ -51,6 +51,14 @@ public class Unit : Entity
 
         StateMachine = new UnitStateMachine(this);
         StateMachine.ChangeState(StateMachine.IdleState);
+
+        StageManager.Instance.OnStageEnd += UnitDie;
+    }
+
+    private void UnitDie()
+    {
+        StatHandler.Stop();
+        StatHandler.Die();
     }
 
     /// <summary>
