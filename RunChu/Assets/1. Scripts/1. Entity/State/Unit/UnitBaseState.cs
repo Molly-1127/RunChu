@@ -11,4 +11,10 @@ public class UnitBaseState : EntityBaseState
         unit = unitStateMachine.Entity as Unit;
     }
 
+    public override void Update()
+    {
+        base.Update();
+        if (unit.StatHandler.IsDie())
+            unit.StatHandler.Stop();
+    }
 }

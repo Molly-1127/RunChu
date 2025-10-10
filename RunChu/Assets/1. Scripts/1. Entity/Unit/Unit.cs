@@ -4,13 +4,14 @@ public class Unit : Entity
 {
     public UnitEventHandler EventHandler { get; private set; }
     public UnitMovementHandler MovementHandler { get; private set; }
-    public UnitStatHandler StatHandler{ get; private set; }
+    public UnitStatHandler StatHandler { get; private set; }
+    public UnitEffectHandler EffectHandler{ get; private set; }
 
     public UnitStateMachine StateMachine { get; private set; }
 
 
-    [field:Header("Unit Data")]
-    [field:SerializeField] public UnitSO Data{ get; private set; }
+    [field: Header("Unit Data")]
+    [field: SerializeField] public UnitSO Data { get; private set; }
 
     protected override void Awake()
     {
@@ -20,6 +21,7 @@ public class Unit : Entity
         EventHandler = GetComponent<UnitEventHandler>();
         MovementHandler = GetComponent<UnitMovementHandler>();
         StatHandler = GetComponent<UnitStatHandler>();
+        EffectHandler = GetComponent<UnitEffectHandler>();
     }
 
     void Start()
@@ -45,10 +47,10 @@ public class Unit : Entity
     public void UnitInit()
     {
         StatHandler.Init(this);
-        MovementHandler.Init(this); 
+        MovementHandler.Init(this);
 
         StateMachine = new UnitStateMachine(this);
-        StateMachine.ChangeState(StateMachine.IdleState); 
+        StateMachine.ChangeState(StateMachine.IdleState);
     }
 
     /// <summary>

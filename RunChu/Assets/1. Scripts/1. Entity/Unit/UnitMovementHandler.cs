@@ -89,7 +89,7 @@ public class UnitMovementHandler : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        float jumpForce = unit.Data.JumpForce;
+        float jumpForce = unit.StatHandler.GetJumpForce();
 
         unit.Rigidbody.velocity = Vector2.zero;
         unit.Rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);

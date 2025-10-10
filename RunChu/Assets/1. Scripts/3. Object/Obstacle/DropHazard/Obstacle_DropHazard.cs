@@ -5,9 +5,14 @@ public class Obstacle_DropHazard : Obstacle
     [Header("DropHazard  Obstacle Component")]
     [SerializeField] private float duration;
     [SerializeField] private Ease easeType;
-
+    [SerializeField] private float yOffset = 10f;
     private Vector3 initPos;
-    private readonly float yOffset = 10f;
+
+    public override void OnCollide()
+    {
+        base.OnCollide();
+        GameManager.Instance.Unit.StatHandler.TakeDamage(damage);
+    }
 
 
     [ContextMenu("IntroAnim")]

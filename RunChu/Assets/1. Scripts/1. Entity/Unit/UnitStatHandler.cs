@@ -1,25 +1,6 @@
 using UnityEngine;
 using System;
-
-/// <summary>
-/// 인게임 내부에서 동적으로 변하는 Stat을 관리하는 클래스
-/// </summary>
-[Serializable]
-public class UnitStat
-{
-    public int HP;
-    public float Speed;
-    public int TotalStamina;
-    public int CurrentStamina;
-
-    public void Init(UnitSO unitSO)
-    {
-        HP = unitSO.HP;
-        Speed = unitSO.Speed;
-        TotalStamina = unitSO.Stamina;
-        CurrentStamina = 0;
-    }
-}
+using System.Collections;
 
 public class UnitStatHandler : MonoBehaviour
 {
@@ -28,6 +9,7 @@ public class UnitStatHandler : MonoBehaviour
 
     private Unit unit;
     private bool isDie;
+    private Coroutine slowCor;
 
     public void Init(Unit unit)
     {
@@ -44,41 +26,7 @@ public class UnitStatHandler : MonoBehaviour
 
     public float GetCurrentSpeed() => currentStat.Speed;
     public float GetJumpForce() => unit.Data.JumpForce;
-    public int GetMaxHp() => baseStat.HP;
-    public int GetCurrentHp() => currentStat.HP;
-    public int GetMaxStamina() => currentStat.TotalStamina;
-    public int GetCurrentStamina() => currentStat.CurrentStamina;
     public bool IsDie() => isDie;
-
-    [ContextMenu("TakeRandomDamage")]
-    public void TakeDamageRandom()
-    {
-        System.Random rand = new System.Random();
-        TakeDamage(rand.Next(10, 50));
-    }
-    [ContextMenu("IncreaseRandomStamina")]
-    public void IncreaseStaminaRandom()
-    {
-        System.Random rand = new System.Random();
-        IncreaseStamina(rand.Next(50, 200));
-    }
-
-    public void TakeDamage(int damage)
-    {
-        if (isDie) return;
-
-        currentStat.HP = Math.Max(0, currentStat.HP - damage);
-        unit.EventHandler.CallHpChangeEvent(damage);
-        GameManager.Instance.CameraEventHandler.CollideShake();
-        Debug.Log($"Take {damage} Damage");
-
-        if (currentStat.HP <= 0)
-        {
-            Debug.Log("Die");
-            isDie = true;
-            unit.EventHandler.CallDieEvent();
-        }
-    }
 
     public void IncreaseStamina(int staminaValue)
     {
@@ -95,4 +43,64 @@ public class UnitStatHandler : MonoBehaviour
     {
         return (float)currentStat.CurrentStamina / currentStat.TotalStamina;
     }
+
+    #region TakeDamage 관련
+    public void TakeDamage(int damage)
+    {
+        if (isDie) return;
+
+        currentStat.HP = Math.Max(0, currentStat.HP - damage);
+        unit.EventHandler.CallHpChangeEvent(damage);
+        OnTakeDamage();
+        Debug.Log($"Take {damage} Damage");
+
+        if (currentStat.HP <= 0)
+        {
+            Debug.Log("Die");
+            isDie = true;
+            unit.EventHandler.CallDieEvent();
+        }
+    }
+
+    public void OnTakeDamage()
+    {
+        GameManager.Instance.CameraEventHandler.CollideShake();
+
+        if (slowCor != null)
+            StopCoroutine(slowCor);
+        slowCor = StartCoroutine(SlowCoroutine());
+    }
+
+    private IEnumerator SlowCoroutine()
+    {
+        float startTime = Time.time;
+        float endTime = startTime + unit.Data.SlowDuration;
+        Debug.Log($"startTime : {startTime} / endTime : {endTime}");
+
+        currentStat.Speed = baseStat.Speed * unit.Data.SpeedReducer;
+
+        while (Time.time < endTime)
+        {
+            unit.EffectHandler.SetSpriteTransparent();
+            yield return Extension.ZeroPointOneWfs;
+            unit.EffectHandler.SetSpriteOriginal();
+            yield return Extension.ZeroPointOneWfs;
+        }
+
+        unit.EffectHandler.SetSpriteOriginal();
+        currentStat.Speed = baseStat.Speed;
+    }
+
+    public void Boost()
+    {
+        currentStat.Speed = unit.Data.BoostSpeed;
+    }
+
+    public void Stop()
+    {
+        currentStat.Speed = 0f;
+    }
+
+    #endregion
+
 }

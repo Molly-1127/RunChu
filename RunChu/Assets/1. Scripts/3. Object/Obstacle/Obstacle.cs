@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour, IObstacle
 
     public virtual void OnCollide()
     {
-        GameManager.Instance.Unit.StatHandler.TakeDamage(damage);
+        
     }
 
     public virtual void IntroAnim()

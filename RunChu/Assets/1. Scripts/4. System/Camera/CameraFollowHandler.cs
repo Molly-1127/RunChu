@@ -15,7 +15,7 @@ public class CameraFollowHandler : MonoBehaviour
 
     private void LateUpdate()
     {
-        //FollowUnit();
+        FollowUnit();
     }
 
     private void FollowUnit()
