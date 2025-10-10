@@ -152,8 +152,8 @@ MonoBehaviour:
     m_Bits: 256
   originOffset: {x: 0, y: 0}
   originSize: {x: 0, y: 0}
-  slideOffset: {x: 0.02884059, y: -0.2284104}
-  slideSize: {x: 0.6141973, y: 0.1873716}
+  slideOffset: {x: -0.1592514, y: -1.287764}
+  slideSize: {x: 4.318322, y: 2.11492}
 --- !u!114 &5123361116251271878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,8 +280,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15925121, y: -0.18605423}
-  m_Size: {x: 1.9421024, y: 4.318321}
+  m_Offset: {x: -0.12482405, y: 0.05493909}
+  m_Size: {x: 2.252624, y: 4.593751}
   m_Direction: 0
 --- !u!1 &8519488868679059685
 GameObject:

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Obstacle_Platformer : Obstacle
 {
-    // 등장 연출?
+
 }

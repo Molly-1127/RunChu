@@ -6,3 +6,9 @@ public interface IState
     public void FixedUpdate();
 }
 
+public interface IObstacle
+{
+    public void Init();
+    public void OnCollide();
+    public void IntroAnim();
+}

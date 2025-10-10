@@ -57,7 +57,7 @@ public class PoolManager : Singleton<PoolManager>
     /// </summary>
     /// <param name="poolObjectType"></param>
     /// <returns></returns>
-    private GameObject SpawnFromPool(EPoolObjectType poolObjectType)
+    public GameObject SpawnFromPool(EPoolObjectType poolObjectType)
     {
         if (!poolDictionary.ContainsKey(poolObjectType))
             return null;

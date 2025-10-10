@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : MonoBehaviour, IObstacle
 {
     [Header("Obstacle Component")]
     [SerializeField] protected EObstacleType type;
@@ -12,14 +12,20 @@ public class Obstacle : MonoBehaviour
         Init();
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
         damage = DataManager.Instance.ObstacleDataDictionary[type];
+        IntroAnim();
     }
 
-    protected virtual void OnCollide()
+    public virtual void OnCollide()
     {
         GameManager.Instance.Unit.StatHandler.TakeDamage(damage);
+    }
+
+    public virtual void IntroAnim()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
