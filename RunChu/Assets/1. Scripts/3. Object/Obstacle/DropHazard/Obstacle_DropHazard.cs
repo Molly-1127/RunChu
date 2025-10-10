@@ -20,8 +20,8 @@ public class Obstacle_DropHazard : Obstacle
     {
         base.IntroAnim();
 
-        initPos = transform.position;
-        transform.position = new Vector3(initPos.x, initPos.y + yOffset, initPos.z);
-        transform.DOMove(initPos, duration).SetEase(easeType);
+        initPos = transform.localPosition;
+        transform.localPosition = new Vector3(initPos.x, initPos.y + yOffset, initPos.z);
+        transform.DOLocalMove(initPos, duration).SetEase(easeType);
     }
 }

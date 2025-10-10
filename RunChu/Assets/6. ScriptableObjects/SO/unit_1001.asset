@@ -16,8 +16,8 @@ MonoBehaviour:
   Name: "\uC790\uC11D\uCE04"
   HP: 200
   Stamina: 1000
-  Speed: 15
+  Speed: 10
   BoostSpeed: 23
   SpeedReducer: 0.5
-  SlowDuration: 5
+  SlowDuration: 4
   JumpForce: 15

@@ -21,9 +21,10 @@ public class Obstacle_Jump : Obstacle
     {
         base.IntroAnim();
 
-        initPos = transform.position;
-        transform.position = new Vector3(initPos.x, initPos.y - yOffset, initPos.z);
-        transform.DOMove(initPos, duration).SetEase(easeType);
+        // 장애물이 배경의 하위 오브젝트가 되어 움직일 것이기 때문에, local Position 기준으로 이동시켜야함.
+        initPos = transform.localPosition;
+        transform.localPosition  = new Vector3(initPos.x, initPos.y - yOffset, initPos.z);
+        transform.DOLocalMove(initPos, duration).SetEase(easeType);
     }
 }
 
