@@ -69,6 +69,7 @@ public class UnitStatHandler : MonoBehaviour
 
         currentStat.HP = Math.Max(0, currentStat.HP - damage);
         unit.EventHandler.CallHpChangeEvent(damage);
+        GameManager.Instance.CameraEventHandler.CollideShake();
         Debug.Log($"Take {damage} Damage");
 
         if (currentStat.HP <= 0)

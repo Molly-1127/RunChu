@@ -18,9 +18,9 @@ public class DataManager : Singleton<DataManager>
     /// </summary>
     private void InitObstacleData()
     {
-        ObstacleDataDictionary[EObstacleType.EJumpSingle] = 50;
-        ObstacleDataDictionary[EObstacleType.EJumpDouble] = 70;
+        ObstacleDataDictionary[EObstacleType.EJumpSingle] = 10;
+        ObstacleDataDictionary[EObstacleType.EJumpDouble] = 30;
         ObstacleDataDictionary[EObstacleType.EPlatformer] = 0;
-        ObstacleDataDictionary[EObstacleType.EDropHarzard] = 70;
+        ObstacleDataDictionary[EObstacleType.EDropHarzard] = 50;
     }
 }
